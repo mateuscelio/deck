@@ -1,3 +1,53 @@
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 70px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  background-color: transparent;
+  border-radius: 50vh;
+  border: 2px solid black;
+  letter-spacing: 1px;
+  min-width: 130px;
+  cursor: pointer;
+}
+
+button > span {
+  font-size: 25px;
+  padding-left: 5px;
+}
+
+#initial-deck-btn,
+#shuffle-deck-btn {
+  color: blue;
+  border-color: blue;
+}
+
+#hearts-btn,
+#diams-btn {
+  color: red;
+  border-color: red;
+}
+
 .deck {
   display: flex;
   flex-direction: row;
@@ -6,7 +56,36 @@
 }
 
 .deck__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 10px;
   border: 1px solid black;
   margin: 10px;
+  height: 115px;
+  width: 65px;
+  border-radius: 10px;
+  font-size: 20px;
+  word-wrap: break-word;
+  transition: transform 0.1s ease-out;
+  display: inline-block;
+}
+
+.deck__card:hover {
+  transform: translate(-5px, -5px);
+}
+
+.deck__card--hearts,
+.deck__card--diams {
+  color: red;
+  border-color: red;
+}
+
+.deck__card__number--inverted {
+  transform: rotate(180deg);
+}
+
+.deck__card__suit {
+  text-align: center;
+  font-size: 60px;
 }

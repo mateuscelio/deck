@@ -25,19 +25,19 @@ class Deck {
         this.initial_deck.push({ suit, n });
       });
     });
-    this.resetCurrentDeck()
+    this.resetCurrentDeck();
   }
 
   filterBySuit(suit) {
     return this.current_deck.filter((card) => card.suit === suit);
   }
 
-  resetCurrentDeck(){
+  resetCurrentDeck() {
     this.current_deck = [...this.initial_deck];
   }
 
-  shuffleCurrentDeck(){
-    this.current_deck = this.current_deck.sort(() => Math.random() - 0.5)
+  shuffleCurrentDeck() {
+    this.current_deck = this.current_deck.sort(() => Math.random() - 0.5);
   }
 }
 
@@ -54,14 +54,13 @@ const spadesBtn = document.querySelector("#spades-btn");
 const diamsBtn = document.querySelector("#diams-btn");
 const clubsBtn = document.querySelector("#clubs-btn");
 
-initialDeckBtn.addEventListener("click", () =>{
+initialDeckBtn.addEventListener("click", () => {
   deck.resetCurrentDeck();
-  renderDeck(deck.current_deck)
+  renderDeck(deck.current_deck);
 });
-
-shuffleDeckBtn.addEventListener("click", () =>{
+shuffleDeckBtn.addEventListener("click", () => {
   deck.shuffleCurrentDeck();
-  renderDeck(deck.current_deck)
+  renderDeck(deck.current_deck);
 });
 heartsBtn.addEventListener("click", () =>
   renderDeck(deck.filterBySuit("hearts"))
@@ -78,10 +77,27 @@ clubsBtn.addEventListener("click", () =>
 
 function renderDeck(deck) {
   const createdCardsNodes = deck.map((card) => {
-    const el = document.createElement("div");
-    el.innerHTML = `${card.n} &${card.suit};`;
-    el.className = "deck__card";
-    return el;
+    const cardElement = document.createElement("div");
+
+    const numberElement = document.createElement("div");
+    const numberElementInverted = document.createElement("div");
+    const suitElement = document.createElement("div");
+
+    numberElement.innerHTML = `${card.n}`;
+    numberElementInverted.innerHTML = `${card.n}`;
+    suitElement.innerHTML = `&${card.suit};`;
+
+    numberElement.className = "deck__card__number";
+    numberElementInverted.classList.add(
+      "deck__card__number",
+      "deck__card__number--inverted"
+    );
+    suitElement.className = "deck__card__suit";
+
+    cardElement.append(numberElement, suitElement, numberElementInverted);
+
+    cardElement.classList.add("deck__card", `deck__card--${card.suit}`);
+    return cardElement;
   });
 
   deckDiv.replaceChildren(...createdCardsNodes);
