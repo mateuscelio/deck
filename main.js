@@ -25,7 +25,6 @@ class Deck {
         this.initial_deck.push({ suit, n });
       });
     });
-
     this.resetCurrentDeck()
   }
 
@@ -37,6 +36,9 @@ class Deck {
     this.current_deck = [...this.initial_deck];
   }
 
+  shuffleCurrentDeck(){
+    this.current_deck = this.current_deck.sort(() => Math.random() - 0.5)
+  }
 }
 
 const deck = new Deck();
@@ -46,6 +48,7 @@ const deckDiv = document.querySelector(".deck");
 
 //Buttons
 const initialDeckBtn = document.querySelector("#initial-deck-btn");
+const shuffleDeckBtn = document.querySelector("#shuffle-deck-btn");
 const heartsBtn = document.querySelector("#hearts-btn");
 const spadesBtn = document.querySelector("#spades-btn");
 const diamsBtn = document.querySelector("#diams-btn");
@@ -54,8 +57,12 @@ const clubsBtn = document.querySelector("#clubs-btn");
 initialDeckBtn.addEventListener("click", () =>{
   deck.resetCurrentDeck();
   renderDeck(deck.current_deck)
-}
-);
+});
+
+shuffleDeckBtn.addEventListener("click", () =>{
+  deck.shuffleCurrentDeck();
+  renderDeck(deck.current_deck)
+});
 heartsBtn.addEventListener("click", () =>
   renderDeck(deck.filterBySuit("hearts"))
 );
