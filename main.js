@@ -1,6 +1,6 @@
 class Deck {
-  card_suits = ["hearts", "spades", "diams", "clubs"];
-  card_numbers = [
+  CARD_SUITS = ["hearts", "spades", "diams", "clubs"];
+  CARD_NUMBERS = [
     "A",
     "2",
     "3",
@@ -25,8 +25,8 @@ class Deck {
   }
 
   generateInitialDeck() {
-    return this.card_suits.flatMap((suit) =>
-      this.card_numbers.map((n) => ({ suit, n }))
+    return this.CARD_SUITS.flatMap((suit) =>
+      this.CARD_NUMBERS.map((n) => ({ suit, n }))
     );
   }
 
