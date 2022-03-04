@@ -22,6 +22,7 @@ class Deck {
   constructor() {
     this.card_suits.forEach((suit) => {
       this.card_numbers.forEach((n) => {
+        //flat map
         this.initial_deck.push({ suit, n });
       });
     });
@@ -37,7 +38,7 @@ class Deck {
   }
 
   shuffleCurrentDeck() {
-    this.current_deck = this.current_deck.sort(() => Math.random() - 0.5);
+    this.current_deck.sort(() => Math.random() - 0.5);
   }
 }
 
