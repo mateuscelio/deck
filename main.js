@@ -20,13 +20,14 @@ class Deck {
   current_deck = [];
 
   constructor() {
-    this.card_suits.forEach((suit) => {
-      this.card_numbers.forEach((n) => {
-        //flat map
-        this.initial_deck.push({ suit, n });
-      });
-    });
+    this.initial_deck = this.generateInitialDeck();
     this.resetCurrentDeck();
+  }
+
+  generateInitialDeck() {
+    return this.card_suits.flatMap((suit) =>
+      this.card_numbers.map((n) => ({ suit, n }))
+    );
   }
 
   filterBySuit(suit) {
