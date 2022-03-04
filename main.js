@@ -45,6 +45,8 @@ class Deck {
 
 const deck = new Deck();
 
+// DOM manipulation
+
 //Deck div
 const deckDiv = document.querySelector(".deck");
 
@@ -78,31 +80,33 @@ clubsBtn.addEventListener("click", () =>
 );
 
 function renderDeck(deck) {
-  const createdCardsNodes = deck.map((card) => {
-    const cardElement = document.createElement("div");
-
-    const numberElement = document.createElement("div");
-    const numberElementInverted = document.createElement("div");
-    const suitElement = document.createElement("div");
-
-    numberElement.innerHTML = `${card.n}`;
-    numberElementInverted.innerHTML = `${card.n}`;
-    suitElement.innerHTML = `&${card.suit};`;
-
-    numberElement.className = "deck__card__number";
-    numberElementInverted.classList.add(
-      "deck__card__number",
-      "deck__card__number--inverted"
-    );
-    suitElement.className = "deck__card__suit";
-
-    cardElement.append(numberElement, suitElement, numberElementInverted);
-
-    cardElement.classList.add("deck__card", `deck__card--${card.suit}`);
-    return cardElement;
-  });
-
+  const createdCardsNodes = deck.map((card) => createCardNode(card));
   deckDiv.replaceChildren(...createdCardsNodes);
 }
 
+function createCardNode(card) {
+  const cardElement = document.createElement("div");
+
+  const numberElement = document.createElement("div");
+  const numberElementInverted = document.createElement("div");
+  const suitElement = document.createElement("div");
+
+  numberElement.innerHTML = `${card.n}`;
+  numberElementInverted.innerHTML = `${card.n}`;
+  suitElement.innerHTML = `&${card.suit};`;
+
+  numberElement.className = "deck__card__number";
+  numberElementInverted.classList.add(
+    "deck__card__number",
+    "deck__card__number--inverted"
+  );
+  suitElement.className = "deck__card__suit";
+
+  cardElement.append(numberElement, suitElement, numberElementInverted);
+
+  cardElement.classList.add("deck__card", `deck__card--${card.suit}`);
+  return cardElement;
+}
+
+//Initial Render
 renderDeck(deck.initial_deck);
